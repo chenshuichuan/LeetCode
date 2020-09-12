@@ -1,6 +1,7 @@
 package leetcode25;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CombinationSum39 {
@@ -8,6 +9,10 @@ public class CombinationSum39 {
         CombinationSum39 c = new CombinationSum39();
         int[] ca = {2,3,6,7};
         System.out.println(c.combinationSum(ca,7).size());
+
+
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
     }
     private List<Integer> stack = new ArrayList<>();
     private List<List<Integer>> result = new ArrayList<>();
