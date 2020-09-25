@@ -31,4 +31,16 @@ class TreeNode {
         }
         return tn;
     }
+    public static void printTree(TreeNode root){
+        print(root,1);
+    }
+    private static void print(TreeNode root,int n){
+        if(root==null)return;
+        print(root.left,n+1);
+        for (int i = 0; i < n; i++) {
+            System.out.print("  ");
+        }
+        System.out.println("--"+root.val);
+        print(root.right,n+1);
+    }
 }

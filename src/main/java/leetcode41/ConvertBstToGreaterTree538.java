@@ -25,13 +25,12 @@ public class ConvertBstToGreaterTree538 {
         dfs(root);
         return root;
     }
-    private int dfs(TreeNode root){
-        if (root==null)return 0;
+    private void dfs(TreeNode root){
+        if (root==null)return;
 
-        int right = dfs(root.right);
-        root.val = root.val+right+sum;
-        int left = dfs(root.left);
-
-        return root.val+left;
+        dfs(root.right);
+        sum+=root.val;
+        root.val = sum;
+        dfs(root.left);
     }
 }

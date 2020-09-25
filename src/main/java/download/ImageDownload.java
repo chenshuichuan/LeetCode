@@ -1,11 +1,13 @@
 package download;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +32,7 @@ public class ImageDownload {
                 StringBuilder builder = new StringBuilder(temp);
                 if(i<10)builder.append("0");
                 builder.append(i).append(".jpg");
-                downloadJPL.download(storePath+builder.toString(),url+builder.toString());
+                downloadJPL.saveUrl(storePath+builder.toString(),url+builder.toString());
             }
             long endTime=System.currentTimeMillis(); //获取结束时间
             System.out.println("程序运行时间： "+(endTime-startTime)+"ms");
@@ -38,31 +40,48 @@ public class ImageDownload {
 
 
     }
-    public void download(String urlString, String filename)  {
+    public void download2(String urlString, String filename)  {
+         File file = new File(filename);
+        if(file.exists())return;
         try {
-            URL url = new URL(urlString); // 构造URL
-            URLConnection con = url.openConnection();  // 打开链接
-            con.setConnectTimeout(5*1000);  //设置请求超时为5s
-            InputStream is = con.getInputStream();  // 输入流
-            byte[] bs = new byte[1024];  // 1K的数据缓冲
-            int len;  // 读取到的数据长度
-            int i = filename.length();
-            for(i--;i>=0 && filename.charAt(i) != '\\' && filename.charAt(i) != '/';i--);
-            String s_dir = filename.substring(0, i);
-            File dir = new File(s_dir);  // 输出的文件流
-            if(!dir.exists()){
-                dir.mkdirs();
-            }
-            OutputStream os = new FileOutputStream(filename);
-            // 开始读取
-            while ((len = is.read(bs)) != -1) {
-                os.write(bs, 0, len);
-            }
-            // 完毕，关闭所有链接
-            os.close();
-            is.close();
+            URL website = new URL(urlString);
+            InputStream in = website.openStream();
+            //Files.copy(in, StandardCopyOption.REPLACE_EXISTING);
+            FileOutputStream fout = new FileOutputStream(file);
+            //Files.copy(in,file);
+
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+    public void saveUrl(final String filename, final String urlString) {
+        try {
+            File file = new File(filename);
+            if(file.exists())return;
+            BufferedInputStream in = null;
+            FileOutputStream fout = null;
+            System.out.println("begin:"+filename);
+            System.out.println("from:"+urlString);
+            try {
+                in = new BufferedInputStream(new URL(urlString).openStream());
+                fout = new FileOutputStream(filename);
+
+                final byte data[] = new byte[1024];
+                int count;
+                while ((count = in.read(data, 0, 1024)) != -1) {
+                    fout.write(data, 0, count);
+                }
+            } finally {
+                if (in != null) {
+                    in.close();
+                }
+                if (fout != null) {
+                    fout.close();
+                }
+            }
+            System.out.println("finish:"+filename);
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
     }
 }
