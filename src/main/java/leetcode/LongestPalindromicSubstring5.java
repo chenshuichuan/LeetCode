@@ -5,10 +5,10 @@ public class LongestPalindromicSubstring5 {
         LongestPalindromicSubstring5 p = new LongestPalindromicSubstring5();
         //System.out.println(p.longestPalindrome("abc"));
         //System.out.println(p.longestPalindrome("aaa"));
-        System.out.println(p.longestPalindrome2("cbbbbbaaaaaaaaaaad"));
+        System.out.println(p.longestPalindrome4("cbbbbbaaaaaaaaaaad"));
     }
     //双中心检测法
-    public String longestPalindrome(String s) {
+    public String longestPalindrome4(String s) {
         int maxi = 0;
         int maxj = 0;
         int flag = 0;
@@ -34,7 +34,8 @@ public class LongestPalindromicSubstring5 {
         if(maxi>=0 && maxj<s.length() && maxj>= maxi)return s.substring(maxi,maxj+1);
         else return "";
     }
-    public String longestPalindrome2(String s) {
+    //dp 也是双中心的思想 感觉
+    public String longestPalindrome(String s) {
         int n = s.length();
         int[][] dp = new int[n][n];
         String ans = "";
