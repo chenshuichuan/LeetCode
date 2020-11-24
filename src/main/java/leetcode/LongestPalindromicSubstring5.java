@@ -4,7 +4,7 @@ public class LongestPalindromicSubstring5 {
     public static void main(String[] args){
         LongestPalindromicSubstring5 p = new LongestPalindromicSubstring5();
         //System.out.println(p.longestPalindrome("abc"));
-        //System.out.println(p.longestPalindrome("aaa"));
+        //System.out.println(p.longestPalindrome("aaa"));[4,2,1,3]
         System.out.println(p.longestPalindrome4("cbbbbbaaaaaaaaaaad"));
     }
     //双中心检测法
