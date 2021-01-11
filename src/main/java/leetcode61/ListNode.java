@@ -22,4 +22,13 @@ public class ListNode {
         }
         return head.next;
     }
+    public static void printList(ListNode listHead){
+        ListNode p = listHead;
+        System.out.print("[");
+       while(p!=null){
+           System.out.print(p.val+",");
+           p = p.next;
+       }
+        System.out.print("]");
+    }
 }
