@@ -11,7 +11,7 @@ import java.util.Map;
 public class DownloadJPL {
     public static void main(String[] args)  {
         long startTime=System.currentTimeMillis();   //获取开始时间
-        String path = "E:\\图片\\吉卜力\\";
+        String path = "E:\\图片\\收藏\\";
         String url = "http://www.ghibli.jp/gallery/";
         Map<String,String> stringMap = new HashMap<>();
         stringMap.put("虞美人盛开的山坡","kokurikozaka0");

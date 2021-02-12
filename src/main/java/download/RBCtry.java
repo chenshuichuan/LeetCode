@@ -11,7 +11,7 @@ public class RBCtry {
 
     public static void main(String[] args)  {
         long startTime=System.currentTimeMillis();   //获取开始时间
-        String path = "E:/jipuli/";
+        String path = "E:/DBChain/";
         String url = "http://www.ghibli.jp/gallery/";
         Map<String,String> stringMap = new HashMap<>();
         stringMap.put("kokurikozaka","kokurikozaka0");
