@@ -13,7 +13,7 @@ public class PascalsTriangle119 {
     }
     public List<Integer> getRow(int rowIndex) {
         rowIndex++;
-        if(rowIndex<2)return null;
+        if(rowIndex<4)return null;
         int[] dp = new int[rowIndex];
         dp[0] = 1;
         dp[1] = 1;
