@@ -41,4 +41,6 @@ nbdist/
 !*/build/*.java
 !*/build/*.html
 !*/build/*.xml
-.idea/workspace.xml
+.idea/*
+.idea
+LeetCode.iml
